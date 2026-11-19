@@ -1,0 +1,11 @@
+{
+  "case_id": "example-write",
+  "task_type": "generate",
+  "title": "Annealing temperature and perovskite conductivity",
+  "audience": "材料方向研究生",
+  "style": "中文、学术、简洁",
+  "format": "markdown+docx",
+  "facts": "样品在 100 C 退火后电导率为 1.5 S/cm。在 150 C 退火后电导率为 2.0 S/cm。每组样本量 n=30。测试温度为 25 C。",
+  "sections": ["Abstract", "Introduction", "Methods", "Results", "Discussion", "Conclusion", "References"],
+  "references": ["Vaswani A. Attention is all you need. NeurIPS 2017."]
+}
