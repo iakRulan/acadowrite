@@ -5,6 +5,8 @@ description: "Produce an editable, source-mapped academic manuscript: read the f
 
 # acadowrite — Source-mapped Academic Manuscript Writing
 
+> **脚本路径**：本技能安装于 `/skills/weekly-skill/`，脚本绝对路径为 `/skills/weekly-skill/scripts/`（工作目录是 `/app/work`，不要用相对路径）。
+
 Produce a manuscript that is **editable and fact-true**: every number, unit and claim traces to the supplied fact sheet, missing material becomes an explicit placeholder instead of an invention, and the output is both Markdown and Word. The failure mode this skill exists to prevent: a polished draft with numbers the model made up, citations that don't support their sentence, missing sections, and no way to keep editing.
 
 **Method in one line:** extract facts from the 底稿 → fill/rewrite the required sections → map each fact to its source sentence → emit Markdown + DOCX → run a consistency check that rejects any number not in the fact sheet.
@@ -19,7 +21,7 @@ Produce a manuscript that is **editable and fact-true**: every number, unit and 
 ### Phase 1 — Draft
 
 ```bash
-python3 scripts/write.py --case /input/case.json --work /app/work
+python3 /skills/weekly-skill/scripts/write.py --case /input/case.json --work /app/work
 ```
 
 - **Extract facts**: one fact per sentence, carrying every number+unit in it, with the source sentence. No fact without a number/unit is treated as a "fact" (prose goes to the model).
@@ -31,7 +33,7 @@ python3 scripts/write.py --case /input/case.json --work /app/work
 ### Phase 2 — Fact consistency check
 
 ```bash
-python3 scripts/check_facts.py --case /input/case.json --work /app/work
+python3 /skills/weekly-skill/scripts/check_facts.py --case /input/case.json --work /app/work
 ```
 
 Rejects:
@@ -80,7 +82,7 @@ cp /app/work/manuscript.md /app/work/manuscript.docx /app/work/fact_map.json \
 ## Self-check
 
 ```bash
-python3 scripts/check_facts.py --case /input/case.json --work /app/work
+python3 /skills/weekly-skill/scripts/check_facts.py --case /input/case.json --work /app/work
 python3 -c "import json;r=json.load(open('/app/work/result.json'));print(r['case_id'], r['status'], r['counts'])"
 ```
 
